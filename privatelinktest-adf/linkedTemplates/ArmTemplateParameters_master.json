@@ -1,0 +1,52 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "privatelinktest-adf"
+		},
+		"ADLS_AG1_accountKey": {
+			"value": ""
+		},
+		"Blob_AG2_connectionString": {
+			"value": ""
+		},
+		"DemoLS1_accountKey": {
+			"value": ""
+		},
+		"ADLS_AG1_properties_typeProperties_url": {
+			"value": "https://collabprivatelinkstor.dfs.core.windows.net/"
+		},
+		"DemoLS1_properties_typeProperties_url": {
+			"value": "https://collabprivatelinkstor.dfs.core.windows.net/"
+		},
+		"ADLS_AG1_properties_privateLinkResourceId": {
+			"value": "/subscriptions/49f5b43e-3df5-4dc6-8770-62a42b14b14b/resourceGroups/privatelinkcollab-rg/providers/Microsoft.Storage/storageAccounts/collabprivatelinkstor"
+		},
+		"ADLS_AG1_properties_groupId": {
+			"value": "dfs"
+		},
+		"ADLS_AG1_properties_fqdns": {
+			"value": [
+				"collabprivatelinkstor.dfs.core.windows.net"
+			]
+		},
+		"Blob_AG2_properties_privateLinkResourceId": {
+			"value": "/subscriptions/06897164-47b3-4046-8ecd-a51d963e7046/resourceGroups/privatelinkcollab-rg/providers/Microsoft.Storage/storageAccounts/collabprivatelinkstor3"
+		},
+		"Blob_AG2_properties_groupId": {
+			"value": "blob"
+		},
+		"Blob_AG2_properties_fqdns": {
+			"value": [
+				"collabprivatelinkstor3.blob.core.windows.net"
+			]
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

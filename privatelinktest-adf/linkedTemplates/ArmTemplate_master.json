@@ -1,0 +1,123 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "privatelinktest-adf"
+		},
+		"ADLS_AG1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLS_AG1'"
+		},
+		"Blob_AG2_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'Blob_AG2'"
+		},
+		"DemoLS1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'DemoLS1'"
+		},
+		"ADLS_AG1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://collabprivatelinkstor.dfs.core.windows.net/"
+		},
+		"DemoLS1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://collabprivatelinkstor.dfs.core.windows.net/"
+		},
+		"ADLS_AG1_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/49f5b43e-3df5-4dc6-8770-62a42b14b14b/resourceGroups/privatelinkcollab-rg/providers/Microsoft.Storage/storageAccounts/collabprivatelinkstor"
+		},
+		"ADLS_AG1_properties_groupId": {
+			"type": "string",
+			"defaultValue": "dfs"
+		},
+		"ADLS_AG1_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"collabprivatelinkstor.dfs.core.windows.net"
+			]
+		},
+		"Blob_AG2_properties_privateLinkResourceId": {
+			"type": "string",
+			"defaultValue": "/subscriptions/06897164-47b3-4046-8ecd-a51d963e7046/resourceGroups/privatelinkcollab-rg/providers/Microsoft.Storage/storageAccounts/collabprivatelinkstor3"
+		},
+		"Blob_AG2_properties_groupId": {
+			"type": "string",
+			"defaultValue": "blob"
+		},
+		"Blob_AG2_properties_fqdns": {
+			"type": "array",
+			"defaultValue": [
+				"collabprivatelinkstor3.blob.core.windows.net"
+			]
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "privatelinktest-adf_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLS_AG1_accountKey": {
+						"value": "[parameters('ADLS_AG1_accountKey')]"
+					},
+					"Blob_AG2_connectionString": {
+						"value": "[parameters('Blob_AG2_connectionString')]"
+					},
+					"DemoLS1_accountKey": {
+						"value": "[parameters('DemoLS1_accountKey')]"
+					},
+					"ADLS_AG1_properties_privateLinkResourceId": {
+						"value": "[parameters('ADLS_AG1_properties_privateLinkResourceId')]"
+					},
+					"ADLS_AG1_properties_groupId": {
+						"value": "[parameters('ADLS_AG1_properties_groupId')]"
+					},
+					"ADLS_AG1_properties_fqdns": {
+						"value": "[parameters('ADLS_AG1_properties_fqdns')]"
+					},
+					"Blob_AG2_properties_privateLinkResourceId": {
+						"value": "[parameters('Blob_AG2_properties_privateLinkResourceId')]"
+					},
+					"Blob_AG2_properties_groupId": {
+						"value": "[parameters('Blob_AG2_properties_groupId')]"
+					},
+					"Blob_AG2_properties_fqdns": {
+						"value": "[parameters('Blob_AG2_properties_fqdns')]"
+					},
+					"ADLS_AG1_properties_typeProperties_url": {
+						"value": "[parameters('ADLS_AG1_properties_typeProperties_url')]"
+					},
+					"DemoLS1_properties_typeProperties_url": {
+						"value": "[parameters('DemoLS1_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
