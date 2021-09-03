@@ -1,0 +1,34 @@
+{
+	"name": "BlobLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"parameters": {
+			"BlobStoreName": {
+				"type": "String"
+			},
+			"BlobStoreSecretId": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=@{linkedService().BlobStoreName};",
+			"accountKey": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kvLinkedService",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": {
+					"value": "@linkedService().BlobStoreSecretId",
+					"type": "Expression"
+				}
+			}
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
