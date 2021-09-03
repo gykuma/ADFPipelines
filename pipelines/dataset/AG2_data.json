@@ -2,8 +2,26 @@
 	"name": "AG2_data",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "Blob_AG2",
-			"type": "LinkedServiceReference"
+			"referenceName": "BlobLS",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"BlobStoreName": {
+					"value": "@dataset().SourceAccountName",
+					"type": "Expression"
+				},
+				"BlobStoreSecretId": {
+					"value": "@dataset().SourceAccountKeyVaultSecret",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"SourceAccountName": {
+				"type": "String"
+			},
+			"SourceAccountKeyVaultSecret": {
+				"type": "String"
+			}
 		},
 		"annotations": [],
 		"type": "Json",
