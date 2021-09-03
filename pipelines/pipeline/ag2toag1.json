@@ -51,6 +51,12 @@
 				]
 			}
 		],
+		"parameters": {
+			"test": {
+				"type": "string",
+				"defaultValue": "test"
+			}
+		},
 		"annotations": [],
 		"lastPublishTime": "2021-09-01T07:59:45Z"
 	},
