@@ -14,6 +14,9 @@
 		"DemoLS1_accountKey": {
 			"value": ""
 		},
+		"BlobLS_connectionString": {
+			"value": ""
+		},
 		"ADLS_AG1_properties_typeProperties_url": {
 			"value": "https://collabprivatelinkstor.dfs.core.windows.net/"
 		},

@@ -19,6 +19,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DemoLS1'"
 		},
+		"BlobLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobLS'"
+		},
 		"kvLinkedService_properties_typeProperties_baseUrl": {
 			"type": "string",
 			"defaultValue": "https://gykumakv.vault.azure.net/"
@@ -228,6 +232,45 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/BlobLS')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"BlobStoreName": {
+						"type": "String"
+					},
+					"BlobStoreSecretId": {
+						"type": "String"
+					}
+				},
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('BlobLS_connectionString')]",
+					"accountKey": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "kvLinkedService",
+							"type": "LinkedServiceReference"
+						},
+						"secretName": {
+							"value": "@linkedService().BlobStoreSecretId",
+							"type": "Expression"
+						}
+					}
+				},
+				"connectVia": {
+					"referenceName": "integrationRuntime1",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/integrationRuntime1')]",
+				"[concat(variables('factoryId'), '/linkedServices/kvLinkedService')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/AG1_store')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
@@ -263,8 +306,26 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"linkedServiceName": {
-					"referenceName": "Blob_AG2",
-					"type": "LinkedServiceReference"
+					"referenceName": "BlobLS",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"BlobStoreName": {
+							"value": "@dataset().SourceAccountName",
+							"type": "Expression"
+						},
+						"BlobStoreSecretId": {
+							"value": "@dataset().SourceAccountKeyVaultSecret",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"SourceAccountName": {
+						"type": "String"
+					},
+					"SourceAccountKeyVaultSecret": {
+						"type": "String"
+					}
 				},
 				"annotations": [],
 				"type": "Json",
@@ -286,7 +347,7 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/Blob_AG2')]"
+				"[concat(variables('factoryId'), '/linkedServices/BlobLS')]"
 			]
 		},
 		{
@@ -334,7 +395,16 @@
 							{
 								"referenceName": "AG2_data",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"SourceAccountName": {
+										"value": "@pipeline().parameters.SourceAccountName",
+										"type": "Expression"
+									},
+									"SourceAccountKeyVaultSecret": {
+										"value": "@pipeline().parameters.SourceAccountKVSecret",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
@@ -354,6 +424,12 @@
 					"test2": {
 						"type": "string",
 						"defaultValue": "random"
+					},
+					"SourceAccountName": {
+						"type": "String"
+					},
+					"SourceAccountKVSecret": {
+						"type": "String"
 					}
 				},
 				"annotations": [],
