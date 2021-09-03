@@ -1,0 +1,20 @@
+{
+	"name": "CommonLS",
+	"properties": {
+		"parameters": {
+			"DbName": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"serviceEndpoint": "@{linkedService().DbName}",
+			"accountKind": "BlobStorage"
+		},
+		"connectVia": {
+			"referenceName": "integrationRuntime1",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
