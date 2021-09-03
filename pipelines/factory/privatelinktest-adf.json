@@ -1,0 +1,9 @@
+{
+	"name": "privatelinktest-adf",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "87953441-082f-4c69-ab0f-5e5099b89c1d",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}

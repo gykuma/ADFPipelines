@@ -1,0 +1,10 @@
+{
+	"name": "Blob_AG2",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/06897164-47b3-4046-8ecd-a51d963e7046/resourceGroups/privatelinkcollab-rg/providers/Microsoft.Storage/storageAccounts/collabprivatelinkstor3",
+		"groupId": "blob",
+		"fqdns": [
+			"collabprivatelinkstor3.blob.core.windows.net"
+		]
+	}
+}

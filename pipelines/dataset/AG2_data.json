@@ -1,0 +1,28 @@
+{
+	"name": "AG2_data",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Blob_AG2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "demoz.json",
+				"folderPath": "Hello",
+				"container": "datacontainer"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"hello": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

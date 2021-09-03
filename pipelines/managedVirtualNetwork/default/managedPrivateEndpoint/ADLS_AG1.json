@@ -1,0 +1,10 @@
+{
+	"name": "ADLS_AG1",
+	"properties": {
+		"privateLinkResourceId": "/subscriptions/49f5b43e-3df5-4dc6-8770-62a42b14b14b/resourceGroups/privatelinkcollab-rg/providers/Microsoft.Storage/storageAccounts/collabprivatelinkstor",
+		"groupId": "dfs",
+		"fqdns": [
+			"collabprivatelinkstor.dfs.core.windows.net"
+		]
+	}
+}

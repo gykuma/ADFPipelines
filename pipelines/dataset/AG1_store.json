@@ -1,0 +1,26 @@
+{
+	"name": "AG1_store",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_AG1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "container00"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"hello": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
