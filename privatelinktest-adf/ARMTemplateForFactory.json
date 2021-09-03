@@ -54,6 +54,10 @@
 			"defaultValue": [
 				"collabprivatelinkstor3.blob.core.windows.net"
 			]
+		},
+		"kvLinkedService_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://gykumakv.vault.azure.net/"
 		}
 	},
 	"variables": {
@@ -346,6 +350,19 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/managedVirtualNetworks/default')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/kvLinkedService')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('kvLinkedService_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
 		}
 	]
 }

@@ -55,6 +55,10 @@
 				"collabprivatelinkstor3.blob.core.windows.net"
 			]
 		},
+		"kvLinkedService_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://gykumakv.vault.azure.net/"
+		},
 		"containerUri": {
 			"type": "string",
 			"metadata": "URI to storage account containing linked ARM templates"
@@ -90,6 +94,9 @@
 					},
 					"DemoLS1_accountKey": {
 						"value": "[parameters('DemoLS1_accountKey')]"
+					},
+					"kvLinkedService_properties_typeProperties_baseUrl": {
+						"value": "[parameters('kvLinkedService_properties_typeProperties_baseUrl')]"
 					},
 					"ADLS_AG1_properties_privateLinkResourceId": {
 						"value": "[parameters('ADLS_AG1_properties_privateLinkResourceId')]"

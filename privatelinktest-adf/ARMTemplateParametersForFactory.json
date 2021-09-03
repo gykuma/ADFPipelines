@@ -41,6 +41,9 @@
 			"value": [
 				"collabprivatelinkstor3.blob.core.windows.net"
 			]
+		},
+		"kvLinkedService_properties_typeProperties_baseUrl": {
+			"value": "https://gykumakv.vault.azure.net/"
 		}
 	}
 }
