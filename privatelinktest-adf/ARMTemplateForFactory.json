@@ -121,6 +121,10 @@
 					"test": {
 						"type": "string",
 						"defaultValue": "test"
+					},
+					"test2": {
+						"type": "string",
+						"defaultValue": "random"
 					}
 				},
 				"annotations": [],
