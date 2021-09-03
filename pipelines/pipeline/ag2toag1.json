@@ -40,7 +40,17 @@
 				"inputs": [
 					{
 						"referenceName": "AG2_data",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SourceAccountName": {
+								"value": "@pipeline().parameters.SourceAccountName",
+								"type": "Expression"
+							},
+							"SourceAccountKeyVaultSecret": {
+								"value": "@pipeline().parameters.SourceAccountKVSecret",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
@@ -59,6 +69,12 @@
 			"test2": {
 				"type": "string",
 				"defaultValue": "random"
+			},
+			"SourceAccountName": {
+				"type": "String"
+			},
+			"SourceAccountKVSecret": {
+				"type": "String"
 			}
 		},
 		"annotations": [],
