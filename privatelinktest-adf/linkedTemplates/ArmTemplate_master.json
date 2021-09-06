@@ -11,6 +11,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ADLS_AG1'"
 		},
+		"BlobLS_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'BlobLS'"
+		},
 		"Blob_AG2_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'Blob_AG2'"
@@ -19,10 +23,6 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'DemoLS1'"
 		},
-		"BlobLS_connectionString": {
-			"type": "secureString",
-			"metadata": "Secure string for 'connectionString' of 'BlobLS'"
-		},
 		"ADLS_AG1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://collabprivatelinkstor.dfs.core.windows.net/"
@@ -30,6 +30,10 @@
 		"DemoLS1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://collabprivatelinkstor.dfs.core.windows.net/"
+		},
+		"kvLinkedService_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://gykumakv.vault.azure.net/"
 		},
 		"ADLS_AG1_properties_privateLinkResourceId": {
 			"type": "string",
@@ -58,10 +62,6 @@
 			"defaultValue": [
 				"collabprivatelinkstor3.blob.core.windows.net"
 			]
-		},
-		"kvLinkedService_properties_typeProperties_baseUrl": {
-			"type": "string",
-			"defaultValue": "https://gykumakv.vault.azure.net/"
 		},
 		"containerUri": {
 			"type": "string",
@@ -93,14 +93,17 @@
 					"ADLS_AG1_accountKey": {
 						"value": "[parameters('ADLS_AG1_accountKey')]"
 					},
+					"BlobLS_connectionString": {
+						"value": "[parameters('BlobLS_connectionString')]"
+					},
 					"Blob_AG2_connectionString": {
 						"value": "[parameters('Blob_AG2_connectionString')]"
 					},
 					"DemoLS1_accountKey": {
 						"value": "[parameters('DemoLS1_accountKey')]"
 					},
-					"BlobLS_connectionString": {
-						"value": "[parameters('BlobLS_connectionString')]"
+					"ADLS_AG1_properties_typeProperties_url": {
+						"value": "[parameters('ADLS_AG1_properties_typeProperties_url')]"
 					},
 					"kvLinkedService_properties_typeProperties_baseUrl": {
 						"value": "[parameters('kvLinkedService_properties_typeProperties_baseUrl')]"
@@ -122,9 +125,6 @@
 					},
 					"Blob_AG2_properties_fqdns": {
 						"value": "[parameters('Blob_AG2_properties_fqdns')]"
-					},
-					"ADLS_AG1_properties_typeProperties_url": {
-						"value": "[parameters('ADLS_AG1_properties_typeProperties_url')]"
 					},
 					"DemoLS1_properties_typeProperties_url": {
 						"value": "[parameters('DemoLS1_properties_typeProperties_url')]"
